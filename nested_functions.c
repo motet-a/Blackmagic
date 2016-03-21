@@ -1,6 +1,6 @@
 /*
   Feature name : nested functions
-  Compilation flags : gcc
+  Compilation flags : gcc -W -Wall -Wextra -Werror
   Is it epitech-norm compliant :  Yes
   Source : https://gcc.gnu.org/onlinedocs/gcc/Nested-Functions.html#Nested-Functions
   Explanations : Nested functions are functions defined inside another function.
