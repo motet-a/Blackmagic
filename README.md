@@ -1,6 +1,6 @@
 # Blackmagic
 
-### Best C / GCC unknown functions / features.
+### Our best C and GCC unknown functions / features.
 
 <p align="center">
   </br>
