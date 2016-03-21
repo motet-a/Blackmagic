@@ -3,7 +3,7 @@
   Compilation flags : gcc -W -Wall -Wextra -Werror -fms-extentions
   Is it epitech-norm compliant :  Yes
   Source : http://jonathanpoelen.blogspot.fr/2013/01/structure-et-union-anonyme.html
-  Explanations : Anonymous structures that aren't anonymous ! :D Allows you inheritance-like in C, without any functions.
+  Explanations : Anonymous structures that aren't anonymous :D ! Allows you inheritance-like in C, without any function.
   Found by grange_c, melis_m
 */
 
