@@ -13,7 +13,7 @@
 #define __rounded__sizeof(TYPE) ((sizeof(TYPE) + (sizeof(int) - 1)) & ~(sizeof(int) - 1))
 
 // And here is the beast...
-# define first(TYPE) (*(TYPE *)(__builtin_frame_address(0) - 4 * sizeof(unsigned) - __rounded__sizeof(TYPE)))
+#define first(TYPE) (*(TYPE *)(__builtin_frame_address(0) - 4 * sizeof(unsigned) - __rounded__sizeof(TYPE)))
 
 void  three_args(float a, float b, float c)
 {
