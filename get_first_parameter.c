@@ -14,7 +14,7 @@
 
 // And here is the beast...
 // Please note that this may NOT be portable and is only guarantee to works on {EPITECH.} computers. 
-#define first(TYPE) (*(TYPE *)(__builtin_frame_address(0) - 4 * sizeof(unsigned) - __rounded__sizeof(TYPE)))
+#define first(TYPE) (*(TYPE *)(__builtin_frame_address(0) - 2 * sizeof(void *) - __rounded__sizeof(TYPE)))
 
 void  three_args(float a, float b, float c)
 {
