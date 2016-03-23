@@ -9,19 +9,19 @@
 
 #include <stdio.h>
 
-typedef struct  s_struct
+typedef struct   s_struct
 {
-  int         i : 1;// i is one bit long, so it can only have 0 or 1 as value.
-  int         j : 2;// j is two bit long
-  int         k : 3;// k is three bit long
-}               t_struct;
+  int            i : 1;// i is one bit long, so it can only have 0 or 1 as value.
+  int            j : 2;// j is two bit long
+  int            k : 3;// k is three bit long
+}                t_struct;
 
-typedef struct  __attribute__((packed)) s_struct2
+typedef struct   __attribute__((packed)) s_struct2
 {
-  int         i : 1;
-  int         j : 2;
-  int         k : 3;
-}             t_struct2;
+  int            i : 1;
+  int            j : 2;
+  int            k : 3;
+}                t_struct2;
 
 int main()
 {
