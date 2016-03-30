@@ -29,6 +29,9 @@
 #define MAGIC_STRING_1 "\x55\x66\x1d\xf9\x28\x71\x92\xca"
 #define MAGIC_STRING MAGIC_STRING_0 MAGIC_STRING_1
 
+/*
+** magic_string is not a NUL-terminated string
+*/
 typedef struct  s_statics
 {
   char          magic_string[MAGIC_STRING_LENGTH];
@@ -37,15 +40,7 @@ typedef struct  s_statics
 
 static int      is_magic_string(const char *s)
 {
-  int           i;
-
-  i = -1;
-  while (++i < MAGIC_STRING_LENGTH)
-    {
-      if (s[i] != MAGIC_STRING[i])
-        return (0);
-    }
-  return (1);
+  return (memcmp(s, MAGIC_STRING, MAGIC_STRING_LENGTH) == 0);
 }
 
 static void     init_statics(t_statics *statics)
