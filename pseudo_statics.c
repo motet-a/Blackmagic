@@ -14,62 +14,70 @@
   Found by motet_a - Antoine Motet <antoine.motet@epitech.eu>
 */
 
+#include <stdlib.h>
 #include <stdio.h>
-
-/*
-** This one is just needed for memcpy() and memcmp()
-*/
+#include <stdint.h>
 #include <string.h>
 
-/*
-** A random string. Longer is safer, but longer is slower.
-*/
-#define MAGIC_STRING_LENGTH 16
-#define MAGIC_STRING_0 "\xa8\x74\x91\x64\xab\x80\x30\x68"
-#define MAGIC_STRING_1 "\x55\x66\x1d\xf9\x28\x71\x92\xca"
-#define MAGIC_STRING MAGIC_STRING_0 MAGIC_STRING_1
+#define STATIC(variable)        (get_statics()->variable)
 
 /*
-** magic_string is not a NUL-terminated string
+** A random number.
+** You can use anything here, since it looks random and is
+** 8 bytes long to fit in a uint64_t.
 */
-typedef struct  s_statics
-{
-  char          magic_string[MAGIC_STRING_LENGTH];
-  const char    *pseudo_static_variable;
-}               t_statics;
+#define MAGIC_NUMBER    (0x8bc2df231f11ecc6)
 
-static int      is_magic_string(const char *s)
+typedef struct          s_statics
 {
-  return (memcmp(s, MAGIC_STRING, MAGIC_STRING_LENGTH) == 0);
-}
+  uint64_t              magic_number;
+  char                  *name;
+}                       t_statics;
 
-static void     init_statics(t_statics *statics)
+static void             init_statics(t_statics *statics)
 {
-  memcpy(statics->magic_string, MAGIC_STRING, MAGIC_STRING_LENGTH);
+  statics->magic_number = MAGIC_NUMBER;
 }
 
 /*
 ** Returns a pointer to the instance of the `t_static` structure
 ** in the main() function
 */
-static void     *get_statics(void)
+static t_statics        *get_statics(void)
 {
-  char          c;
-  char          *stack_pointer;
+  uint64_t              variable_on_the_stack;
+  uint64_t              *stack_pointer;
 
-  stack_pointer = &c;
-  while (!is_magic_string(stack_pointer))
+  stack_pointer = &variable_on_the_stack;
+  while (*stack_pointer != MAGIC_NUMBER)
     stack_pointer++;
-  printf("statics found at %p\n", stack_pointer);
-  return (stack_pointer);
+  return ((t_statics *)stack_pointer);
 }
 
-static void     another_function(void)
+static char     *read_string(size_t length)
 {
-  t_statics     *p;
+  char          *string;
 
-  p = (t_statics *)get_statics();
-  printf("%s\n", p->pseudo_static_variable);
+  string = malloc(length + 1);
+  if (!fgets(string, length, stdin))
+    string[0] = '\0';
+  if (string[0] && string[strlen(string) - 1] == '\n')
+    string[strlen(string) - 1] = '\0';
+  return (string);
+}
+
+static void     read_name()
+{
+  printf("What's your name?\n");
+  STATIC(name) = read_string(20);
+}
+
+static void     print_name(void)
+{
+  if (!STATIC(name)[0])
+    printf("Please tell me your name.\n");
+  else
+    printf("Hello %s!\n", STATIC(name));
 }
 
 int             main()
@@ -77,8 +85,8 @@ int             main()
   t_statics     statics;
 
   init_statics(&statics);
-  statics.pseudo_static_variable = "It works!";
-  printf("statics is at %p\n", &statics);
-  another_function();
+  read_name();
+  print_name();
+  free(STATIC(name));
   return (0);
 }
