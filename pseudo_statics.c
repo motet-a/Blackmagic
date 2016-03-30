@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 /*
-** This one is just needed for memcpy()
+** This one is just needed for memcpy() and memcmp()
 */
 #include <string.h>
 
