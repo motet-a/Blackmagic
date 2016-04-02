@@ -7,8 +7,8 @@
   we can write funny things without.
   Valgrind can print a lot of "Conditional jumps on unitialised
   value(s)" with this. This is normal, because this program "walks"
-  across the stack looking for a given magic string. And the stack
-  is full of unitialised values.
+  across the stack looking for a magic number. And the stack is
+  full of unitialised values.
   Warning: This program is not guaranteed to work on non-x86
   platforms.
   Found by motet_a - Antoine Motet <antoine.motet@epitech.eu>
