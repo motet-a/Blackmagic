@@ -30,7 +30,8 @@ int main()
 
    // BUT (There is always a but...)
 
-   // Structure members are padded in memory. That means that the size of a structure is always a multiple of the word size, which is 4 or 8 bits depending on your processor.
+   // Structure members are padded in memory. That means that the size of a structure is always a multiple of the word size
+   // which is 4 or 8 bits depending on your processor.
 
    // If you don't want your structure to be padded, so it can be 1 byte long, you must use :
    // __attribute__ ((packed))
