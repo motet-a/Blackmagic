@@ -11,7 +11,7 @@
 #define CREATE_LABEL(a) MERGE(__for_, a)
 #define UNIQUE_NAME CREATE_LABEL(__LINE__)
 
-# define FOR(init, loop, incr) init; int UNIQUE_NAME = 0; while ((void)(UNIQUE_NAME && (incr)), UNIQUE_NAME = 1, loop)
+#define FOR(init, loop, incr) init; int UNIQUE_NAME = 0; while ((void)(UNIQUE_NAME && (incr)), UNIQUE_NAME = 1, loop)
 
 //By doing while (A, B, loop) , i'm doing what's inside A and B, and the result is C. So the while takes the value of 'loop' !
 //So i need to set the incrementation inside the loop, but if i do so, it will increment before the first loop, and that's not what i wabt : i want to increment at the end of the first loop
